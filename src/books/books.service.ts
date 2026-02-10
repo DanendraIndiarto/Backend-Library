@@ -11,7 +11,13 @@ export class BooksService {
   constructor(private prisma: PrismaService) {}
 
   async create(dto: CreateBookDto) {
-    return this.prisma.book.create({ data: dto });
+    return this.prisma.book.create({
+      data: {
+        title: dto.title,
+        author: dto.author,
+        year: dto.year,
+      },
+    });
   }
 
   async findAll() {
